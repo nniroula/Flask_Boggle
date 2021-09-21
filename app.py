@@ -1,11 +1,17 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session
 from flask_debugtoolbar import DebugToolbarExtension
 from boggle import Boggle
+from flask_session import Session
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = "OH-NO-KEY"
+# app.config['SESSION_DIR'] = "memcached"
+app.config["SECRET_KEY"] = "zyxwvu"
+
+# app.secret_key = "something else"
 debug = DebugToolbarExtension(app)
+Session(app)
+
 
 @app.route("/working")
 def test_flask_setup():
@@ -21,10 +27,16 @@ def show_debutoolbar_in_browser():
 # make an instance of a class
 boggle = Boggle()
 # now call a function to make board
-make_board = boggle.make_board()
+# make_board = boggle.make_board()
+# session['boggle_board'] = make_board
 
-@app.route("/boggleboard")
+@app.route("/")
 def display_boggle_board():
+    # session['user'] = 'user_work'
+    # session_var = session.get('boggle_board', None)
+    # if session_var is None:
+    make_board = boggle.make_board()
+    session['make_board'] = make_board
     return render_template("boggle_board.html", display_board = make_board) 
 
 
