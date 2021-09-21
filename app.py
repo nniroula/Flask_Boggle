@@ -26,17 +26,16 @@ def show_debutoolbar_in_browser():
 
 # make an instance of a class
 boggle = Boggle()
+
 # now call a function to make board
 # make_board = boggle.make_board()
 # session['boggle_board'] = make_board
 
 @app.route("/")
 def display_boggle_board():
-    # session['user'] = 'user_work'
-    # session_var = session.get('boggle_board', None)
-    # if session_var is None:
     make_board = boggle.make_board()
     session['make_board'] = make_board
+    # session['make_board'] = make_board  # this is the way
     return render_template("boggle_board.html", display_board = make_board) 
 
 
