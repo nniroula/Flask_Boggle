@@ -8,9 +8,16 @@
 </head>
 <body>
     <h1> Boggle game board </h1>
-    <!-- {% for item in display_board %} -->
     {{display_board}}
-        <!-- {{item}}
-    {% endfor %} -->
+
+    <br>
+    <!-- Form to submit a guess -->
+    <!-- <form action=""> -->
+    <form method="POST">
+        <label for="make_guess">Guess</label>
+        <input type="text" id="make_guess"  name="guess_word" placeholder="make a guess"/>
+        <button>Submit</button>
+    </form>
+   
 </body>
 </html>
